@@ -43,6 +43,7 @@ class PoemsRepository(private val mPoemsRemoteDataSource: PoemsDataSource,
         // Respond immediately with cache if available and not dirty
         mCachedPoems?.takeIf { !mCacheIsDirty }?.run {
             callback.onPoemsLoaded(ArrayList(mCachedPoems?.values))
+            return
         }
 
         if (mCacheIsDirty) {

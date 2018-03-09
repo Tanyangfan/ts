@@ -11,16 +11,16 @@ import mushi.taibai.data.Poem
  * Created by Tan.Yangfan on 2018/2/8.
  */
 @Database(entities = [Poem::class], version = 1)
-abstract class AppDatabase private constructor(context: Context) : RoomDatabase() {
+abstract class PoemsDatabase private constructor(context: Context) : RoomDatabase() {
 
     companion object {
-        private var INSTANCE: AppDatabase? = null
+        private var INSTANCE: PoemsDatabase? = null
 
-        fun getInstance(context: Context): AppDatabase {
+        fun getInstance(context: Context): PoemsDatabase {
             INSTANCE?.let {
-                synchronized(AppDatabase::class) {
+                synchronized(PoemsDatabase::class) {
                     INSTANCE = Room.databaseBuilder(context.applicationContext,
-                            AppDatabase::class.java, "tangshi.db")
+                            PoemsDatabase::class.java, "tangshi.db")
                             .build()
                 }
             }
@@ -31,5 +31,5 @@ abstract class AppDatabase private constructor(context: Context) : RoomDatabase(
     /**
      * poem操作dao
      */
-    abstract fun poemDao(): PoemDao
+    abstract fun poemDao(): PoemsDao
 }
